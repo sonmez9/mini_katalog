@@ -28,11 +28,8 @@ class CartState extends ChangeNotifier {
 
 /// Paket kullanmadan sepet durumunu widget ağacına taşır.
 class CartScope extends InheritedNotifier<CartState> {
-  const CartScope({
-    super.key,
-    required CartState cart,
-    required super.child,
-  }) : super(notifier: cart);
+  const CartScope({super.key, required CartState cart, required super.child})
+    : super(notifier: cart);
 
   static CartState of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<CartScope>();

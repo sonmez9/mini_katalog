@@ -11,6 +11,8 @@ Flutter ile geliştirilmiş, Android için basit ve profesyonel görünümlü bi
 - **Navigasyon:** Named Routes ve Route Arguments ile ürün taşıma
 - **Veri:** ürünler API'den okunur, internet yoksa `assets/data/products.json` kullanılır
 
+Platform: **Android** (Android Studio emülatöründe ve release APK olarak doğrulandı).
+
 ## Kullanılan Flutter sürümü
 
 - Flutter **3.47.9** (stable)
@@ -30,6 +32,15 @@ Flutter ile geliştirilmiş, Android için basit ve profesyonel görünümlü bi
    flutter pub get
    flutter run
    ```
+
+## Testler
+
+```bash
+flutter analyze
+flutter test
+```
+
+Testler sepet mantığını ve ana akışı (listeleme, arama, detay, sepete ekleme, silme, Checkout) kapsar.
 
 ## Proje yapısı
 

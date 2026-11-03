@@ -18,8 +18,16 @@ class ProductService {
     try {
       body = await _download(productsUrl);
     } catch (_) {
-      body = await rootBundle.loadString(_fallbackAsset);
+      return loadFromAsset();
     }
+    return _parse(body);
+  }
+
+  /// assets içindeki JSON kopyasından ürünleri okur (çevrimdışı yedek).
+  Future<List<Product>> loadFromAsset() async =>
+      _parse(await rootBundle.loadString(_fallbackAsset));
+
+  List<Product> _parse(String body) {
     final decoded = jsonDecode(body) as Map<String, dynamic>;
     final list = decoded['data'] as List<dynamic>;
     return list
@@ -28,11 +36,12 @@ class ProductService {
   }
 
   Future<String> _download(String url) async {
-    final client = HttpClient()
-      ..connectionTimeout = const Duration(seconds: 8);
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 5);
     try {
       final request = await client.getUrl(Uri.parse(url));
-      final response = await request.close().timeout(const Duration(seconds: 10));
+      final response = await request.close().timeout(
+        const Duration(seconds: 5),
+      );
       if (response.statusCode != 200) {
         throw HttpException('HTTP ${response.statusCode}');
       }

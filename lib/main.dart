@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'screens/cart_screen.dart';
 import 'screens/detail_screen.dart';
 import 'screens/home_screen.dart';
+import 'services/product_service.dart';
 import 'state/cart_state.dart';
 import 'theme/app_theme.dart';
 
 void main() => runApp(const MiniKatalogApp());
 
 class MiniKatalogApp extends StatefulWidget {
-  const MiniKatalogApp({super.key});
+  final ProductService? service;
+
+  const MiniKatalogApp({super.key, this.service});
 
   @override
   State<MiniKatalogApp> createState() => _MiniKatalogAppState();
@@ -34,7 +37,7 @@ class _MiniKatalogAppState extends State<MiniKatalogApp> {
         theme: AppTheme.light,
         initialRoute: HomeScreen.routeName,
         routes: {
-          HomeScreen.routeName: (_) => const HomeScreen(),
+          HomeScreen.routeName: (_) => HomeScreen(service: widget.service),
           DetailScreen.routeName: (_) => const DetailScreen(),
           CartScreen.routeName: (_) => const CartScreen(),
         },

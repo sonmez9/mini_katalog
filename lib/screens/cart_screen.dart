@@ -28,14 +28,21 @@ class CartScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.shopping_cart_outlined,
-                      size: 48, color: AppTheme.muted),
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    size: 48,
+                    color: AppTheme.muted,
+                  ),
                   SizedBox(height: 8),
-                  Text('Your cart is empty',
-                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  Text(
+                    'Your cart is empty',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                   SizedBox(height: 4),
-                  Text('Add items to start shopping',
-                      style: TextStyle(color: AppTheme.muted, fontSize: 12)),
+                  Text(
+                    'Add items to start shopping',
+                    style: TextStyle(color: AppTheme.muted, fontSize: 12),
+                  ),
                 ],
               ),
             )
@@ -54,22 +61,33 @@ class CartScreen extends StatelessWidget {
                       child: ProductImage(url: p.image),
                     ),
                   ),
-                  title: Text(p.name,
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w600)),
-                  subtitle: Text(p.tagline,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 11)),
+                  title: Text(
+                    p.name,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  subtitle: Text(
+                    p.tagline,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 11),
+                  ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(p.price,
-                          style: const TextStyle(fontWeight: FontWeight.w600)),
+                      Text(
+                        p.price,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
                       IconButton(
                         onPressed: () => cart.removeAt(i),
-                        icon: const Icon(Icons.remove_circle_outline,
-                            size: 20, color: AppTheme.muted),
+                        icon: const Icon(
+                          Icons.remove_circle_outline,
+                          size: 20,
+                          color: AppTheme.muted,
+                        ),
                       ),
                     ],
                   ),
@@ -109,8 +127,9 @@ class CartScreen extends StatelessWidget {
                         cart.clear();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              content: Text('Order placed (demo)'),
-                              duration: Duration(seconds: 2)),
+                            content: Text('Order placed (demo)'),
+                            duration: Duration(seconds: 2),
+                          ),
                         );
                       },
                 child: const Text('Checkout'),

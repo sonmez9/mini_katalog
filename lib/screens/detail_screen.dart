@@ -47,27 +47,39 @@ class DetailScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Text(product.name,
-              style:
-                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          Text(
+            product.name,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 2),
-          Text(product.tagline,
-              style: const TextStyle(color: AppTheme.muted, fontSize: 13)),
+          Text(
+            product.tagline,
+            style: const TextStyle(color: AppTheme.muted, fontSize: 13),
+          ),
           const SizedBox(height: 4),
-          Text(product.price,
-              style: const TextStyle(
-                  color: Colors.blue,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600)),
+          Text(
+            product.price,
+            style: const TextStyle(
+              color: Colors.blue,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           const SizedBox(height: 16),
-          const Text('Description',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const Text(
+            'Description',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 6),
-          Text(product.description,
-              style: const TextStyle(fontSize: 13, height: 1.45)),
+          Text(
+            product.description,
+            style: const TextStyle(fontSize: 13, height: 1.45),
+          ),
           const SizedBox(height: 16),
-          const Text('Specifications',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const Text(
+            'Specifications',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -81,13 +93,21 @@ class DetailScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(e.key.toUpperCase(),
-                              style: const TextStyle(
-                                  fontSize: 10, color: AppTheme.muted)),
+                          Text(
+                            e.key.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: AppTheme.muted,
+                            ),
+                          ),
                           const SizedBox(height: 2),
-                          Text(e.value,
-                              style: const TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.w600)),
+                          Text(
+                            e.value,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -101,10 +121,12 @@ class DetailScreen extends StatelessWidget {
               cart.add(product);
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
-                ..showSnackBar(SnackBar(
-                  content: Text('${product.name} added to cart'),
-                  duration: const Duration(seconds: 1),
-                ));
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('${product.name} added to cart'),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
             },
             child: const Text('Add to cart'),
           ),

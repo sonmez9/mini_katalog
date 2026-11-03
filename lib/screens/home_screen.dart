@@ -11,20 +11,23 @@ import 'detail_screen.dart';
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
 
-  const HomeScreen({super.key});
+  final ProductService? service;
+
+  const HomeScreen({super.key, this.service});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _service = ProductService();
+  late final ProductService _service;
   late Future<List<Product>> _future;
   String _query = '';
 
   @override
   void initState() {
     super.initState();
+    _service = widget.service ?? ProductService();
     _future = _service.fetchProducts();
   }
 
@@ -51,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     FilledButton(
                       onPressed: _reload,
                       style: FilledButton.styleFrom(
-                          minimumSize: const Size(140, 44)),
+                        minimumSize: const Size(140, 44),
+                      ),
                       child: const Text('Tekrar dene'),
                     ),
                   ],
@@ -61,10 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
             final q = _query.trim().toLowerCase();
             final products = snapshot.data!
-                .where((p) =>
-                    q.isEmpty ||
-                    p.name.toLowerCase().contains(q) ||
-                    p.tagline.toLowerCase().contains(q))
+                .where(
+                  (p) =>
+                      q.isEmpty ||
+                      p.name.toLowerCase().contains(q) ||
+                      p.tagline.toLowerCase().contains(q),
+                )
                 .toList();
 
             return CustomScrollView(
@@ -83,11 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     sliver: SliverGrid.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.78,
-                      ),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 16,
+                            crossAxisSpacing: 12,
+                            childAspectRatio: 0.78,
+                          ),
                       itemCount: products.length,
                       itemBuilder: (context, i) => ProductCard(
                         product: products[i],
@@ -116,11 +122,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Discover',
-                    style:
-                        TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                Text('Find your perfect device',
-                    style: TextStyle(color: AppTheme.muted, fontSize: 13)),
+                Text(
+                  'Discover',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Find your perfect device',
+                  style: TextStyle(color: AppTheme.muted, fontSize: 13),
+                ),
               ],
             ),
           ),
